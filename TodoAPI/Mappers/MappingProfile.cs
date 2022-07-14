@@ -7,6 +7,7 @@ namespace TodoApi.Mappers
         public MappingProfile()
         {
             CreateMap<TodoAPI.Data.Models.TodoItem, TodoApi.Models.TodoItem>();
+            CreateMap<TodoApi.Models.TodoItem, TodoAPI.Data.Models.TodoItem > ();
         }
     }
 }

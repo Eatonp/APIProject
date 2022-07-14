@@ -10,7 +10,7 @@ using TodoAPI.Data.Database;
 namespace TodoAPI.Data.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    partial class TodoContextModelSnapshot : ModelSnapshot
+    partial class TodoDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,29 @@ namespace TodoAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TodoItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1a2a704f-2872-494d-abf7-8cbe952669d9"),
+                            IsComplete = false,
+                            Name = "Jerry",
+                            Secret = "Guy"
+                        },
+                        new
+                        {
+                            Id = new Guid("38f45965-20cd-4581-acd5-d9543f3162d7"),
+                            IsComplete = true,
+                            Name = "Sam",
+                            Secret = "Test"
+                        },
+                        new
+                        {
+                            Id = new Guid("933024aa-8aaa-4aa2-860b-16989a059edb"),
+                            IsComplete = false,
+                            Name = "Ian",
+                            Secret = "Other"
+                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -7,7 +7,7 @@ namespace TodoAPI.Data.Repositories
     {
         TodoApi.Models.TodoItem? GetByID(Guid id);
         IEnumerable<TodoApi.Models.TodoItem> GetAll();
-        TodoApi.Models.TodoItem Update(Guid id, TodoApi.Models.TodoItem todoItem);
+        Task<TodoApi.Models.TodoItem> UpdateAsync(Guid id, TodoApi.Models.TodoItem todoItem);
         Task<Tuple<Guid, TodoApi.Models.TodoItem>> CreateAsync(TodoApi.Models.TodoItem todoItem);
         Task DeleteAsync(Guid id);
         bool Exists(Guid id);
@@ -33,12 +33,13 @@ namespace TodoAPI.Data.Repositories
             return _mapper.Map<TodoApi.Models.TodoItem>(result);
         }
 
-        public TodoApi.Models.TodoItem Update(Guid id, TodoApi.Models.TodoItem todoItem)
+        public async Task<TodoApi.Models.TodoItem> UpdateAsync(Guid id, TodoApi.Models.TodoItem todoItem)
         {
             var dbModel = _context.TodoItems.Single(x => x.Id == id);
 
             dbModel.Name = todoItem.Name;
             dbModel.IsComplete = todoItem.IsComplete;
+            await _context.SaveChangesAsync();
 
             return _mapper.Map<TodoApi.Models.TodoItem>(dbModel);
         }

@@ -26,23 +26,22 @@ namespace TodoApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<TodoItem> GetById(Guid id)
         {
+            if (!_todoRepository.Exists(id))
+                return NoContent();
+            
             var todoItem = _todoRepository.GetByID(id);
-
-            if (todoItem == null)
-                return NotFound();
-
             return Ok(todoItem);
         }
 
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, TodoItem todoItem)
+        public async Task<ActionResult<TodoItem>> UpdateAsync(Guid id, TodoItem todoItem)
         {
             if (!_todoRepository.Exists(id))
                 return NoContent();
 
-            return Ok(_todoRepository.Update(id, todoItem));
+            return Ok(await _todoRepository.UpdateAsync(id, todoItem));
         }
 
         // POST: api/TodoItems
