@@ -1,9 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,windows,csharp,linux,osx,aspnetcore,dotnetcore
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,windows,csharp,linux,osx,aspnetcore,dotnetcore
 
-*.Database.db
-*.Database.db-shm
-*.Database.db-wal
+.Database.db
+.Database.db-shm
+.Database.db-wal
 *.AssemblyReference.cache
 
 ### ASPNETCore ###
@@ -801,3 +801,6 @@ $RECYCLE.BIN/
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,windows,csharp,linux,osx,aspnetcore,dotnetcore
+/TodoAPI.Data/Database.db-wal
+/TodoAPI.Data/Database.db-shm
+/TodoAPI.Data/Database.db
