@@ -3,9 +3,9 @@ using TodoAPI.Data.Models;
 
 namespace TodoAPI.Data.Database
 {
-    public class TodoContext : DbContext
+    public class TodoDbContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options): base(options)
+        public TodoDbContext(DbContextOptions<TodoDbContext> options): base(options)
         {
         }
 

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3PfJqMgXbtXn1Evm113tXn2W+ti0H3e0AEyALv9iqmsh4FESSxRcAWq4tgtO8+TFyt0iuJDsCvWvRLDsPOko9Q==",
+  "dgSpecHash": "8USLra6vKCYr1RYZLLUrX7+It+/fK+Ajd0h+gk2vm6LXuHnR1wiSnJNLy4sSU8KQw1o8iFWq/940wfrgaZnmxA==",
   "success": true,
   "projectFilePath": "C:\\Users\\david\\Projects\\APIProject\\TodoAPI.Models\\TodoAPI.Models.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\david\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\david\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -8,9 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var sqlConnectionString = builder.Configuration.GetConnectionString("sqlite");
+string sqliteConnectionString = $"Data Source={System.IO.Directory.GetParent(Directory.GetCurrentDirectory())}\\TodoAPI.Data\\Database.db";
+
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TodoContext>(opt => opt.UseSqlite(sqlConnectionString));
+builder.Services.AddDbContext<TodoDbContext>(opt => opt.UseSqlite(sqliteConnectionString));
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "TodoApi", Version = "v1" });
@@ -25,9 +26,17 @@ var mapperConfig = new MapperConfiguration(mc =>
 // Here we can do dependency injection for all the services we need
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 builder.Services.AddSingleton(mapperConfig.CreateMapper());
-builder.Services.AddTransient<TodoContext>();
+builder.Services.AddScoped<TodoDbContext>();
 
-var app = builder.Build();
+var app = builder.Build(); // Past this point we can use the built app to grab any services / control the built application 
+
+// Creates the database and runs all the required migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetService<TodoDbContext>();
+    if(dbContext != null)
+        dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (builder.Environment.IsDevelopment())

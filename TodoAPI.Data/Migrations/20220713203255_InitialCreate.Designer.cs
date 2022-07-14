@@ -10,7 +10,7 @@ using TodoAPI.Data.Database;
 
 namespace TodoAPI.Data.Migrations
 {
-    [DbContext(typeof(TodoContext))]
+    [DbContext(typeof(TodoDbContext))]
     [Migration("20220713203255_InitialCreate")]
     partial class InitialCreate
     {
